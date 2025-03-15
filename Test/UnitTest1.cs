@@ -1,7 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
-using AdPlatformsService.Controllers;
-using AdPlatformsService.Models;
 using System.Collections.Concurrent;
+using WebController;
+using WebController.Controller;
+using WebController.Model;
 
 namespace AdPlatformsService.Tests
 {
