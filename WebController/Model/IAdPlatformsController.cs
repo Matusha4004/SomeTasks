@@ -6,5 +6,5 @@ public interface IAdPlatformsController
 {
     public IActionResult Upload([FromForm] IFormFile file);
 
-    public IActionResult CacheSearch([FromQuery] string location);
+    public IActionResult Search([FromQuery] string location);
 }

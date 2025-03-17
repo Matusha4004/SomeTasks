@@ -1,17 +1,23 @@
+using Serilog;
+using WebController.Model;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+Log.Logger = new LoggerConfiguration()
+    .WriteTo.Console()
+    .WriteTo.File("logs/log.txt", rollingInterval: RollingInterval.Day)
+    .CreateLogger();
+
+builder.Host.UseSerilog();
+
+builder.Services.AddSingleton<IAdPlatformService, AdPlatformService>();
+
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Logging.ClearProviders(); // Очистка провайдеров по умолчанию
-builder.Logging.AddConsole();     // Логгирование в консоль
-builder.Logging.AddDebug();       // Логгирование в отладку
-
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
